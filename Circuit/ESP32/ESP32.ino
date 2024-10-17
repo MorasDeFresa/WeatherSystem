@@ -27,7 +27,9 @@ void VerifyConnection(){
 void WifiConnection()
 {
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting to WiFi");
+  Serial.print("Connecting to ");
+  Serial.print(WIFI_SSID);
+  Serial.print(" ");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
