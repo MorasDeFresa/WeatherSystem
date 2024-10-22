@@ -1,6 +1,8 @@
 #include "WiFiCredentials.h"
 #include "WiFi.h"
 #include <WiFiClient.h>
+#include "BPM.h"
+#include "DHT_Moisture.h"
 
 IPAddress ESP32_IP;
 
@@ -8,9 +10,31 @@ void setup() {
   Serial.begin(115200);
   WifiConnection();
   delay(500);
+  BeginSensors();
 }
 
 void loop() {
+}
+
+void BeginSensors(){
+  Serial.println("Report Sensors");
+  char* BMP_STATUS =  BMP_BeginSensor();
+  Serial.print("Start BMP280");
+  while(strcmp(BMP_STATUS, "BMP280 WORKS!!!") != 0){
+    BMP_STATUS =  BMP_BeginSensor();
+    Serial.print(".");
+  }
+  Serial.println(".");
+  Serial.println(BMP_STATUS);
+  char * DHT_STATUS = DHT11_BeginSensor();
+  Serial.print("Start DHT11");
+  while(strcmp(DHT_STATUS, "DHT11 WORKS!!!") != 0){
+    DHT_STATUS = DHT11_BeginSensor();
+    Serial.print("..");
+  }
+  Serial.println(".");
+  Serial.println(DHT_STATUS);
+  Serial.println("----------------------------------");
 }
 
 void VerifyConnection(){
