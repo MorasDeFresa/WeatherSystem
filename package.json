@@ -1,5 +1,7 @@
 {
   "scripts": {
+
     "start": "cd next && npm run start"
+
   }
 }
