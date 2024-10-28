@@ -75,14 +75,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Deploy to CapRover
-        run: |
-          docker run caprover/cli-caprover:latest caprover deploy \
-            --caproverUrl ${{ secrets.CAPROVER_SERVER }} \
-            --appName ${{ secrets.APP_NAME }} \
-            --appToken ${{ secrets.APP_TOKEN }} \
-            --imageName ${{ steps.meta.outputs.tags }}
-
       - name: Check secrets
         run: |
           if [ -z "${{ secrets.CAPROVER_SERVER }}" ]; then echo "CAPROVER_SERVER is not set"; else echo "CAPROVER_SERVER is [OK]"; fi
@@ -93,3 +85,11 @@ jobs:
           echo "CAPROVER_SERVER length: ${#secrets.CAPROVER_SERVER}"
           echo "APP_TOKEN length: ${#secrets.APP_TOKEN}"
           echo "APP_NAME length: ${#secrets.APP_NAME}"
+
+      - name: Deploy to CapRover
+        run: |
+          docker run caprover/cli-caprover:latest caprover deploy \
+            --caproverUrl ${{ secrets.CAPROVER_SERVER }} \
+            --appName ${{ secrets.APP_NAME }} \
+            --appToken ${{ secrets.APP_TOKEN }} \
+            --imageName ${{ steps.meta.outputs.tags }}
