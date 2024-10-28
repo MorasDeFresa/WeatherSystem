@@ -73,7 +73,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Deploy to CapRover
+      - name: ProductionCaprover
         uses: caprover/deploy-from-github@v1 # Actualizado a usar la versión en lugar del hash
         with:
           server: ${{ secrets.CAPROVER_SERVER }}
