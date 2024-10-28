@@ -18,7 +18,7 @@ COPY next/next.config.mjs ./
 COPY next/public ./public
 
 # Expose the desired port
-EXPOSE 80
+EXPOSE 3001
 
 # Start the Node.js server
 CMD ["npm", "run", "start"]
