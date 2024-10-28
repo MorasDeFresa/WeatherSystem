@@ -5,7 +5,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   DOCKERFILE: ./Dockerfile
   DOCKER_REGISTRY: ghcr.io
-  NODE_VERSION: "18" # Añadido para coincidir con el Dockerfile
+  NODE_VERSION: "18"
 
 on:
   push:
@@ -20,10 +20,10 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v3 # Actualizado a v3
+      - uses: actions/checkout@v3
 
       - name: Cache
-        uses: actions/cache@v3 # Actualizado a v3
+        uses: actions/cache@v3
         with:
           path: |
             ~/.npm
@@ -37,22 +37,22 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: "./next/package-lock.json" # Actualizado para la estructura
+          cache-dependency-path: "./next/package-lock.json"
 
       - name: Install dependencies
-        working-directory: ./next # Añadido
+        working-directory: ./next
         run: npm ci
 
       - name: Build
-        working-directory: ./next # Añadido
+        working-directory: ./next
         run: npm run build
 
       - name: Test
-        working-directory: ./next # Añadido
+        working-directory: ./next
         run: npm run test --if-present
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v3 # Actualizado a v3
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ github.actor }}
@@ -62,21 +62,23 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}
+          tags: |
+            type=sha
+            type=ref,event=branch
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ${{ env.DOCKERFILE }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Deploy to CapRover
-        uses: caprover/deploy-from-github@d76580d79952f6841c453bb3ed37ef452b19752c # Actualizado a usar la versión en lugar del hash
-        with:
-          server: ${{ secrets.CAPROVER_SERVER }}
-          app: ${{ secrets.APP_NAME }}
-          token: "${{ secrets.APP_TOKEN }}"
-          image: ghcr.io/${{ github.repository }}:${{ github.sha }}
+        run: |
+          docker run caprover/cli-caprover:latest caprover deploy \
+            --caproverUrl ${{ secrets.CAPROVER_SERVER }} \
+            --appName ${{ secrets.APP_NAME }} \
+            --appToken ${{ secrets.APP_TOKEN }} \
+            --imageName ${{ steps.meta.outputs.tags }}
