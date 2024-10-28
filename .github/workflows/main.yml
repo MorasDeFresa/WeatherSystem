@@ -81,6 +81,10 @@ jobs:
           if [ -z "${{ secrets.APP_TOKEN }}" ]; then echo "APP_TOKEN is not set"; else echo "APP_TOKEN is [OK]"; fi
           if [ -z "${{ secrets.APP_NAME }}" ]; then echo "APP_NAME is not set"; else echo "APP_NAME is [OK]"; fi
 
+      - name: Debug Image Tag
+        run: |
+          echo "Generated Tag: ${{ steps.meta.outputs.tags }}"
+
       - name: Deploy to CapRover
         run: |
           docker run caprover/cli-caprover:latest caprover deploy \
