@@ -80,11 +80,6 @@ jobs:
           if [ -z "${{ secrets.CAPROVER_SERVER }}" ]; then echo "CAPROVER_SERVER is not set"; else echo "CAPROVER_SERVER is [OK]"; fi
           if [ -z "${{ secrets.APP_TOKEN }}" ]; then echo "APP_TOKEN is not set"; else echo "APP_TOKEN is [OK]"; fi
           if [ -z "${{ secrets.APP_NAME }}" ]; then echo "APP_NAME is not set"; else echo "APP_NAME is [OK]"; fi
-      - name: Check secrets length
-        run: |
-          echo "CAPROVER_SERVER length: ${#secrets.CAPROVER_SERVER}"
-          echo "APP_TOKEN length: ${#secrets.APP_TOKEN}"
-          echo "APP_NAME length: ${#secrets.APP_NAME}"
 
       - name: Deploy to CapRover
         run: |
