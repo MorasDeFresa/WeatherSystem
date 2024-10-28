@@ -36,3 +36,4 @@ Cultivos.init(
 module.exports = Cultivos;
 
 console.log(Cultivos === sequelize.models.Cultivos);
+console.log("test");
