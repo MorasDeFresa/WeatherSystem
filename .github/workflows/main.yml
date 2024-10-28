@@ -10,7 +10,7 @@ env:
 on:
   push:
     branches:
-      - Backend
+      - Production
 
 jobs:
   build-and-publish:
