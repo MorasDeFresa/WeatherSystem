@@ -1,0 +1,82 @@
+name: Deploy to caprover instance
+
+env:
+  CONTEXT_DIR: "./"
+  IMAGE_NAME: ${{ github.repository }}
+  DOCKERFILE: ./Dockerfile
+  DOCKER_REGISTRY: ghcr.io
+  NODE_VERSION: "18" # Añadido para coincidir con el Dockerfile
+
+on:
+  push:
+    branches:
+      - Backend
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3 # Actualizado a v3
+
+      - name: Cache
+        uses: actions/cache@v3 # Actualizado a v3
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/next/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: "./next/package-lock.json" # Actualizado para la estructura
+
+      - name: Install dependencies
+        working-directory: ./next # Añadido
+        run: npm ci
+
+      - name: Build
+        working-directory: ./next # Añadido
+        run: npm run build
+
+      - name: Test
+        working-directory: ./next # Añadido
+        run: npm run test --if-present
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3 # Actualizado a v3
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Deploy to CapRover
+        uses: caprover/deploy-from-github@v1 # Actualizado a usar la versión en lugar del hash
+        with:
+          server: ${{ secrets.CAPROVER_SERVER }}
+          app: ${{ secrets.APP_NAME }}
+          token: "${{ secrets.APP_TOKEN }}"
+          image: ${{ steps.meta.outputs.tags }}
