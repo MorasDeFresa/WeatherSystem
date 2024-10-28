@@ -1,21 +1,4 @@
 {
   "schemaVersion": 2,
-  "dockerfileLines": [
-    "FROM node:18-alpine AS builder",
-    "WORKDIR /app/next",
-    "COPY next/package*.json ./",
-    "RUN npm i",
-    "COPY next/. .",
-    "RUN npm run build",
-    "FROM node:18-alpine AS runner",
-    "WORKDIR /app/next",
-    "ENV NODE_ENV production",
-    "ENV NEXT_TELEMETRY_DISABLED 1",
-    "COPY --from=builder /app/next/package*.json ./",
-    "COPY --from=builder /app/next/.next ./.next",
-    "COPY --from=builder /app/next/public ./public",
-    "COPY --from=builder /app/next/node_modules ./node_modules",
-    "EXPOSE 80",
-    "CMD [\"npm\", \"start\"]"
-  ]
+  "dockerfileLines": "Dockerfile"
 }
