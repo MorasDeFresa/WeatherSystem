@@ -14,7 +14,7 @@ RUN npm ci --only=production
 
 # Copy the built application files
 COPY next/.next ./.next
-COPY next/next.config.js ./
+COPY next/next.config.mjs ./
 COPY next/public ./public
 
 # Expose the desired port
