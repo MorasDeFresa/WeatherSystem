@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const {association} = require("../models/associations") 
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -12,4 +13,5 @@ const sequelize = new Sequelize(
   }
 );
 
-export { sequelize };
+const models = association(sequelize)
+export { sequelize, models };
