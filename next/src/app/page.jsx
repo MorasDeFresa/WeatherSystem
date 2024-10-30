@@ -1,101 +1,84 @@
-import Image from "next/image";
+/// next/src/app/homeuna/page.jsx
+import React from 'react';
+import './globals.css';
+import Image from 'next/image';
 
-export default function Home() {
+export default function Homeuna() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            RATAEL EL RATON Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main style={{ padding: '40px', backgroundColor: 'var(--color-background)' }}>
+      {/* Título */}
+      <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <h1 style={{ color: 'var(--color-primary)', fontSize: '2em' }}>
+          ¿Son las condiciones ambientales de Chía aptas para el desarrollo de cultivos?
+        </h1>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Sección de Beneficios */}
+      <section style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <h2 style={{ color: 'var(--color-secondary)', marginBottom: '20px' }}>
+          Beneficios de conocer las condiciones ambientales
+        </h2>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '40px' }}>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/admin.png" alt="Administración práctica" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Administración práctica</h3>
+            <p className="paragraph-large">
+              Administra toda la información de cultivos y condiciones ambientales en un solo lugar.
+            </p>
+          </div>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/cultivos.png" alt="Programación fácil" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Programación de cultivos</h3>
+            <p style={{ color: 'var(--color-text-light)' }}>
+              Identifica las mejores épocas y condiciones para maximizar la producción.
+            </p>
+          </div>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/crecimiento.png" alt="Crecimiento y análisis" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Crecimiento y análisis</h3>
+            <p style={{ color: 'var(--color-text-light)' }}>
+              Mejora el rendimiento y la sostenibilidad con análisis de datos en tiempo real.
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Sección de Herramientas */}
+      <section style={{ textAlign: 'center' }}>
+        <h2 style={{ color: 'var(--color-secondary)', marginBottom: '20px' }}>
+          Herramientas del Sistema de Información
+        </h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '40px' }}>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/estaciones.png" alt="Programación" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Programación</h3>
+            <p style={{ color: 'var(--color-text-light)' }}>
+              Programa el monitoreo de variables climáticas y agronómicas.
+            </p>
+          </div>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/seguridad.png" alt="Seguridad" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Seguridad</h3>
+            <p style={{ color: 'var(--color-text-light)' }}>
+              Asegura que los datos de los cultivos estén siempre protegidos.
+            </p>
+          </div>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/analisis.png" alt="Análisis de datos" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Análisis de Datos</h3>
+            <p style={{ color: 'var(--color-text-light)' }}>
+              Rastrear el desempeño de los cultivos con análisis detallados.
+            </p>
+          </div>
+          <div style={{ width: '200px', textAlign: 'center' }}>
+            <Image src="/images/alerta.png" alt="Escucha" width={100} height={100} />
+            <h3 style={{ color: 'var(--color-primary)' }}>Escucha</h3>
+            <p style={{ color: 'var(--color-text-light)' }}>
+              Recibe alertas en tiempo real de condiciones adversas.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
