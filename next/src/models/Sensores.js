@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Sensores extends Model {}
-
-Sensores.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'Sensores',
   {
     idSensor: {
       type: DataTypes.INTEGER,
@@ -20,14 +20,12 @@ Sensores.init(
     },
   },
   {
-    sequelize,
-    modelName: "Sensores",
-    tableName: "Sensores",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
 
-module.exports = Sensores;
+}
 
 console.log(Sensores === sequelize.models.Sensores);

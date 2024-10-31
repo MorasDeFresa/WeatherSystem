@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class LecturaSensor extends Model {}
-
-LecturaSensor.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'LecturaSensor',
   {
     idLecturaSensor: {
       type: DataTypes.INTEGER,
@@ -20,14 +20,10 @@ LecturaSensor.init(
     },
   },
   {
-    sequelize,
-    modelName: "LecturaSensor",
-    tableName: "LecturaSensor",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
-
-module.exports = LecturaSensor;
-
+)
+}
 console.log(LecturaSensor === sequelize.models.LecturaSensor);

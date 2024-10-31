@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Cultivos extends Model {}
-
-Cultivos.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'Cultivos',
   {
     idCultivos: {
       type: DataTypes.INTEGER,
@@ -24,15 +24,11 @@ Cultivos.init(
     },
   },
   {
-    sequelize,
-    modelName: "Cultivos",
-    tableName: "Cultivos",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
-
-module.exports = Cultivos;
+)
+}
 
 console.log(Cultivos === sequelize.models.Cultivos);
-console.log("test");

@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class TipoParametro extends Model {}
-
-TipoParametro.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'TipoParametro',
   {
     idTipoParametro: {
       type: DataTypes.INTEGER,
@@ -16,14 +16,11 @@ TipoParametro.init(
     },
   },
   {
-    sequelize,
-    modelName: "TipoParametro",
-    tableName: "TipoParametro",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
-
-module.exports = TipoParametro;
+)
+}
 
 console.log(TipoParametro === sequelize.models.TipoParametro);

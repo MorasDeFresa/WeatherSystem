@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class RangoCritico extends Model {}
-
-RangoCritico.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'RangoCritico',
   {
     idRangoCritico: {
       type: DataTypes.INTEGER,
@@ -20,14 +20,11 @@ RangoCritico.init(
     },
   },
   {
-    sequelize,
-    modelName: "RangoCritico",
-    tableName: "RangoCritico",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
-
-module.exports = RangoCritico;
+)
+}
 
 console.log(RangoCritico === sequelize.models.RangoCritico);

@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Municipios extends Model {}
-
-Municipios.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'Municipio',
   {
     idMunicipio: {
       type: DataTypes.INTEGER,
@@ -16,14 +16,11 @@ Municipios.init(
     },
   },
   {
-    sequelize,
-    modelName: "Municipios",
-    tableName: "Municipios",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
-
-module.exports = Municipios;
+)
+}
 
 console.log(Municipios === sequelize.models.Municipios);

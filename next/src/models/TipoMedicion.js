@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class TipoMedicion extends Model {}
-
-TipoMedicion.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'TipoMedicion',
   {
     idTipoMedicion: {
       type: DataTypes.INTEGER,
@@ -16,14 +16,12 @@ TipoMedicion.init(
     },
   },
   {
-    sequelize,
-    modelName: "TipoMedicion",
-    tableName: "TipoMedicion",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
 
-module.exports = TipoMedicion;
+}
 
 console.log(TipoMedicion === sequelize.models.TipoMedicion);

@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class NivelSeveridad extends Model {}
-
-NivelSeveridad.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'NivelSeveridad',
   {
     idNivelSeveridad: {
       type: DataTypes.INTEGER,
@@ -16,14 +16,13 @@ NivelSeveridad.init(
     },
   },
   {
-    sequelize,
-    modelName: "NivelSeveridad",
-    tableName: "NivelSeveridad",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
+}
 
-module.exports = NivelSeveridad;
+
 
 console.log(NivelSeveridad === sequelize.models.NivelSeveridad);
