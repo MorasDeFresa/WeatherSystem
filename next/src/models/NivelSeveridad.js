@@ -24,5 +24,3 @@ module.exports = (sequelize) => {
 }
 
 
-
-console.log(NivelSeveridad === sequelize.models.NivelSeveridad);

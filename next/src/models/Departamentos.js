@@ -23,4 +23,4 @@ module.exports = (sequelize) => {
 )
 }
 
-console.log(Departamentos === sequelize.models.Departamentos);
+

@@ -23,4 +23,3 @@ module.exports = (sequelize) => {
 )
 }
 
-console.log(Municipios === sequelize.models.Municipios);

@@ -28,4 +28,3 @@ module.exports = (sequelize) => {
 
 }
 
-console.log(Sensores === sequelize.models.Sensores);

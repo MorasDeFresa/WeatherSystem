@@ -27,4 +27,3 @@ module.exports = (sequelize) => {
 )
 }
 
-console.log(RangoCritico === sequelize.models.RangoCritico);

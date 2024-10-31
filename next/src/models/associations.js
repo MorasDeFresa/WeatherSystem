@@ -4,50 +4,65 @@ const UnidadesDeMedida = require('./UnidadesDeMedida');
 const TipoMedicion = require('./TipoMedicion');
 
 const association = (sequelize) => {
-  const SensoresModel = Sensores(sequelize);  
-  const LecturaSensorModel = LecturaSensor(sequelize);
-  const UnidadesDeMedidaModel = UnidadesDeMedida(sequelize);
-  const TipoMedicionModel = TipoMedicion(sequelize);
 
-  SensoresModel.hasMany(LecturaSensorModel, {
+  const models = {
+    Sensores: Sensores(sequelize),
+    LecturaSensor: LecturaSensor(sequelize),
+    UnidadesDeMedida: UnidadesDeMedida(sequelize),
+    TipoMedicion: TipoMedicion(sequelize)
+  };
+
+};
+
+
+const handlerAssociationModels = (sequelize ) => {
+  const {
+    Sensores,
+    LecturaSensor,
+    UnidadesDeMedida,
+    TipoMedicion,
+
+  } = sequelize.models;
+
+  Sensores.hasMany(LecturaSensor, {
     foreignKey: 'idSensor',
     as: 'lecturas', 
   });
 
-  LecturaSensorModel.belongsTo(SensoresModel, {
+  LecturaSensor.belongsTo(Sensores, {
     foreignKey: 'idSensor',
     as: 'sensor',
   });
 
-  UnidadesDeMedidaModel.hasMany(LecturaSensorModel, {
+  UnidadesDeMedida.hasMany(LecturaSensor, {
     foreignKey: 'idUnidadMedida',
     as: 'lecturas',
   });
 
-  LecturaSensorModel.belongsTo(UnidadesDeMedidaModel, {
+  LecturaSensor.belongsTo(UnidadesDeMedida, {
     foreignKey: 'idUnidadMedida',
     as: 'unidadMedida',
   });
 
-  TipoMedicionModel.hasMany(SensoresModel, {
+  TipoMedicion.hasMany(Sensores, {
     foreignKey: 'idTipoMedicion',
     as: 'sensores', 
   });
 
-  SensoresModel.belongsTo(TipoMedicionModel, {
+  Sensores.belongsTo(TipoMedicion, {
     foreignKey: 'idTipoMedicion',
     as: 'tipoMedicion',
   });
 
-  return { 
-    Sensores: SensoresModel, 
-    LecturaSensor: LecturaSensorModel, 
-    UnidadesDeMedida: UnidadesDeMedidaModel,
-    TipoMedicion: TipoMedicionModel 
-  };
+  // return { 
+  //   Sensores: Sensores, 
+  //   LecturaSensor: LecturaSensor, 
+  //   UnidadesDeMedida: UnidadesDeMedida,
+  //   TipoMedicion: TipoMedicion 
+  // };
 //   const handleModels = () => {
 //     Sensores:Sensores()
 //   }
 };
 
-export {association}
+export {association, handlerAssociationModels}

@@ -29,4 +29,4 @@ module.exports = (sequelize) => {
 
 
 
-console.log(Usuarios === sequelize.models.Usuarios);
+

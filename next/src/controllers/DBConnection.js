@@ -15,7 +15,7 @@ const syncDataBase = async () =>{
     await sequelize.sync({force: true})
     return "Database sync"
   } catch (error) {
-    throw new Error("Error in models")
+    throw new Error(error)
   }
 
 }

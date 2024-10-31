@@ -24,4 +24,3 @@ module.exports = (sequelize) => {
 
 }
 
-console.log(TipoMedicion === sequelize.models.TipoMedicion);

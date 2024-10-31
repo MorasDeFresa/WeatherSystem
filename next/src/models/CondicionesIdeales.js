@@ -41,4 +41,4 @@ module.exports = (sequelize) => {
 
 
 
-console.log(CondicionesIdeales === sequelize.models.CondicionesIdeales);
+

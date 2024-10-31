@@ -23,4 +23,3 @@ module.exports = (sequelize) => {
 )
 }
 
-console.log(TipoParametro === sequelize.models.TipoParametro);

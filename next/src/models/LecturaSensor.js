@@ -26,4 +26,3 @@ module.exports = (sequelize) => {
   }
 )
 }
-console.log(LecturaSensor === sequelize.models.LecturaSensor);

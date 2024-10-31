@@ -33,4 +33,4 @@ module.exports = (sequelize) => {
 
 
 
-console.log(CondicionesCriticas === sequelize.models.CondicionesCriticas);
+

@@ -27,4 +27,3 @@ module.exports = (sequelize) => {
 )
 }
 
-console.log(UnidadesDeMedida === sequelize.models.UnidadesDeMedida);

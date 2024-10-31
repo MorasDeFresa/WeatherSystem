@@ -7,6 +7,8 @@ export const GET = async () => {
     const response2 = await syncDataBase();
     return NextResponse.json({ message: response + response2 }, { status: 200 });
   } catch (error) {
+    console.log(error);
+    
     return NextResponse.json({ message: error?.message }, { status: 400 });
   }
 };
