@@ -9,4 +9,16 @@ const testConnection = async () => {
   }
 };
 
-export { testConnection };
+const syncDataBase = async () =>{
+
+  try {
+    await sequelize.sync({force: true})
+    return "Database sync"
+  } catch (error) {
+    throw new Error(error)
+  }
+
+}
+
+export { testConnection , syncDataBase };
+

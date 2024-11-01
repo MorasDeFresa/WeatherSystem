@@ -1,9 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
 
-class CondicionesCriticas extends Model {}
-
-CondicionesCriticas.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'CondicionesCriticas',
   {
     idCondicionesCriticas: {
       type: DataTypes.INTEGER,
@@ -25,14 +24,13 @@ CondicionesCriticas.init(
     },
   },
   {
-    sequelize,
-    modelName: "CondicionesCriticas",
-    tableName: "CondicionesCriticas",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
+}
 
-module.exports = CondicionesCriticas;
 
-console.log(CondicionesCriticas === sequelize.models.CondicionesCriticas);
+
+

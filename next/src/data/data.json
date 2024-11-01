@@ -1,0 +1,18 @@
+{
+  "TipoMedicion": [
+    { "nombreTipoMedicion": "Temperatura" },
+    { "nombreTipoMedicion": "Humedad" },
+    { "nombreTipoMedicion": "Presión" }
+  ],
+  "UnidadesDeMedida": [
+    { "nombreUnidadMedida": "Grados Celsius", "simboloUnidad": "°C" },
+    { "nombreUnidadMedida": "Porcentaje Humedad", "simboloUnidad": "%HR" },
+    { "nombreUnidadMedida": "Hectopascales", "simboloUnidad": "hPa" }
+  ],
+  "Sensores": [
+    { "referenciaSensor": "DHT11", "idTipoMedicion": 1 },
+    { "referenciaSensor": "DHT11", "idTipoMedicion": 2 },
+    { "referenciaSensor": "BMP280", "idTipoMedicion": 1 },
+    { "referenciaSensor": "BMP280", "idTipoMedicion": 3 }
+  ]
+}

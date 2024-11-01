@@ -1,9 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
 
-class LocalizacionSensor extends Model {}
-
-LocalizacionSensor.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'LocalizacionSensor',
   {
     idLocalizacionSensor: {
       type: DataTypes.INTEGER,
@@ -25,14 +24,10 @@ LocalizacionSensor.init(
     },
   },
   {
-    sequelize,
-    modelName: "LocalizacionSensor",
-    tableName: "LocalizacionSensor",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
+}
 
-module.exports = LocalizacionSensor;
-
-console.log(LocalizacionSensor === sequelize.models.LocalizacionSensor);
