@@ -13,6 +13,6 @@ const sequelize = new Sequelize(
   }
 );
 
-const models = association(sequelize)
-const associations = handlerAssociationModels(sequelize)
-module.exports = { sequelize, ...models };
+association(sequelize)
+handlerAssociationModels(sequelize)
+module.exports = { sequelize, ...sequelize.models };

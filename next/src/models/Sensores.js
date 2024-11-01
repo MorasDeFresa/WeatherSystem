@@ -10,12 +10,8 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       allowNull: false,
     },
-    referencia: {
+    referenciaSensor: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    margenError: {
-      type: DataTypes.FLOAT,
       allowNull: false,
     },
   },
