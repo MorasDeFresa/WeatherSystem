@@ -1,9 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
 
-class UnidadesDeMedida extends Model {}
-
-UnidadesDeMedida.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'UnidadesDeMedida',
   {
     idUnidadesDeMedida: {
       type: DataTypes.INTEGER,
@@ -21,14 +20,10 @@ UnidadesDeMedida.init(
     },
   },
   {
-    sequelize,
-    modelName: "UnidadesDeMedida",
-    tableName: "UnidadesDeMedida",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
+}
 
-module.exports = UnidadesDeMedida;
-
-console.log(UnidadesDeMedida === sequelize.models.UnidadesDeMedida);
