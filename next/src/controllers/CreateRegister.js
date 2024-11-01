@@ -13,6 +13,7 @@ export const procesarLecturaSensor = async (datosJSON) => {
   const idUnidadMedidaP = 3; 
   const fechaEliminado = null;
   const fechaLectura = new Date();
+  fechaLectura.setHours(fechaLectura.getUTCHours() - 5);
 
   try {
    
