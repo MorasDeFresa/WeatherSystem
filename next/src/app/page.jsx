@@ -22,7 +22,7 @@ export default function Homeuna() {
           <div style={{ width: '200px', textAlign: 'center' }}>
             <Image src="/images/admin.png" alt="Administración práctica" width={100} height={100} />
             <h3 style={{ color: 'var(--color-primary)' }}>Administración práctica</h3>
-            <p className="paragraph-large">
+            <p style={{ color: 'var(--color-text-light)' }}>
               Administra toda la información de cultivos y condiciones ambientales en un solo lugar.
             </p>
           </div>
