@@ -1,9 +1,8 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
 
-class Sensores extends Model {}
-
-Sensores.init(
+module.exports = (sequelize) => {
+  sequelize.define(
+    'Sensores',
   {
     idSensor: {
       type: DataTypes.INTEGER,
@@ -11,24 +10,17 @@ Sensores.init(
       autoIncrement: true,
       allowNull: false,
     },
-    referencia: {
+    referenciaSensor: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    margenError: {
-      type: DataTypes.FLOAT,
       allowNull: false,
     },
   },
   {
-    sequelize,
-    modelName: "Sensores",
-    tableName: "Sensores",
+    freezeTableName: true,
     timestamps: true,
     paranoid: true,
   }
-);
+)
 
-module.exports = Sensores;
+}
 
-console.log(Sensores === sequelize.models.Sensores);
