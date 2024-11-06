@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
+    "lightweight-charts": "^4.2.1",
+    "mssql": "^11.0.1",
     "mysql2": "^3.11.3",
     "next": "15.0.1",
     "react": "19.0.0-rc-69d4b800-20241021",
